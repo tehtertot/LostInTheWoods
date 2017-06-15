@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-sm-7">
+        <h1>@ViewBag.Trail.Name</h1>
+        <br>
+        <h3>Description</h3>
+        <p>@ViewBag.Trail.Description</p>
+        <br>
+        <h3>Trail Length</h3>
+        <p>@ViewBag.Trail.Trail_Length miles</p>
+        <br>
+        <h3>Elevation Change</h3>
+        <p>@ViewBag.Trail.Elevation feet</p>
+    </div>
+    <div class="col-sm-5">
+        <p><a href="/">Go Home</a></p>
+        <div id="map">
+        </div>
+        <br>
+        <p>Latitude - 
+            @if(ViewBag.Trail.Latitude < 0)
+            {
+               <span>@ViewBag.Trail.Latitude °S</span>
+            }
+            else {
+                <span>@ViewBag.Trail.Latitude °N</span>
+            }
+        </p>
+        <p>Longitude - 
+            @if(ViewBag.Trail.Longitude < 0)
+            {
+               <span>@ViewBag.Trail.Longitude °W</span>
+            }
+            else {
+                <span>@ViewBag.Trail.Longitude °E</span>
+            }
+        </p>
+
+    </div>
+</div>
+<script>
+    function initMap() {
+        var hike = { lat: @ViewBag.Trail.Latitude, lng: @ViewBag.Trail.Longitude };
+        var map = new google.maps.Map(document.getElementById('map'), {zoom: 7, center: hike});
+        var marker = new google.maps.Marker({position: hike, map:map});
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu5GkGIdBkuahkXNRn77xd-zrCePirTXc&callback=initMap">
+</script>
