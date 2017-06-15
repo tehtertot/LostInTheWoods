@@ -4,19 +4,20 @@ using Dapper;
 using System.Data;
 using MySql.Data.MySqlClient;
 using lostInTheWoods.Models;
+using Microsoft.Extensions.Options;
 
 namespace lostInTheWoods.Factory
 {
     public class TrailFactory : IFactory<Trail>
     {
-        private string connectionString;
-        public TrailFactory()
+        private readonly IOptions<MySqlOptions> MySqlConfig;
+        public TrailFactory(IOptions<MySqlOptions> config)
         {
-            connectionString = "server=localhost;userid=root;password=root;port=3306;database=woods;SslMode=None";
+            MySqlConfig = config;
         }
         internal IDbConnection Connection {
             get {
-                return new MySqlConnection(connectionString);
+                return new MySqlConnection(MySqlConfig.Value.ConnectionString);
             }
         }
         public void Add(Trail t) {

@@ -11,8 +11,8 @@ namespace lostInTheWoods.Controllers
     public class HomeController : Controller
     {
         private readonly TrailFactory trailFactory;
-        public HomeController() {
-            trailFactory = new TrailFactory();
+        public HomeController(TrailFactory tf) {
+            trailFactory = tf;
         }
         // GET: /Home/
         [HttpGet]
