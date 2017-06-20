@@ -13,10 +13,4 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
     <PackageReference Include="MySql.Data" Version="7.0.7-*" />
   </ItemGroup>
-  <ItemGroup>
-  <None Include="Content" CopyToPublishDirectory="Always" />
-  <None Include="Views" CopyToPublishDirectory="Always" />
-  <None Include="web.config" CopyToPublishDirectory="Always" />
-  <None Include="appsettings.json" CopyToPublishDirectory="Always" />
-</ItemGroup>
 </Project>
